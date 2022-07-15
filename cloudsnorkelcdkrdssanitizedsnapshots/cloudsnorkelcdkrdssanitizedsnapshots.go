@@ -17,11 +17,6 @@ import (
 
 // Experimental.
 type IRdsSanitizedSnapshotter interface {
-	// Account of database cluster or instance to snapshot and sanitize.
-	//
-	// Use this when the database is shared across accounts.
-	// Experimental.
-	DatabaseAccount() *string
 	// Database cluster to snapshot and sanitize.
 	//
 	// Only one of `databaseCluster` and `databaseInstance` can be specified.
@@ -35,6 +30,11 @@ type IRdsSanitizedSnapshotter interface {
 	// KMS key used to encrypt original database, if any.
 	// Experimental.
 	DatabaseKey() awskms.IKey
+	// Name of database to connect to inside the RDS cluster or instance.
+	//
+	// This database will be used to execute the SQL script.
+	// Experimental.
+	DatabaseName() *string
 	// VPC subnets to use for temporary databases.
 	// Experimental.
 	DbSubnets() *awsec2.SubnetSelection
@@ -52,6 +52,9 @@ type IRdsSanitizedSnapshotter interface {
 	// You would usually want to start this with `USE mydatabase;`.
 	// Experimental.
 	Script() *string
+	// List of accounts the sanitized snapshot should be shared with.
+	// Experimental.
+	ShareAccounts() *[]*string
 	// Limit the number of snapshot history.
 	//
 	// Set this to delete old snapshots and only leave a certain number of snapshots.
@@ -80,16 +83,6 @@ type jsiiProxy_IRdsSanitizedSnapshotter struct {
 	_ byte // padding
 }
 
-func (j *jsiiProxy_IRdsSanitizedSnapshotter) DatabaseAccount() *string {
-	var returns *string
-	_jsii_.Get(
-		j,
-		"databaseAccount",
-		&returns,
-	)
-	return returns
-}
-
 func (j *jsiiProxy_IRdsSanitizedSnapshotter) DatabaseCluster() awsrds.IDatabaseCluster {
 	var returns awsrds.IDatabaseCluster
 	_jsii_.Get(
@@ -115,6 +108,16 @@ func (j *jsiiProxy_IRdsSanitizedSnapshotter) DatabaseKey() awskms.IKey {
 	_jsii_.Get(
 		j,
 		"databaseKey",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_IRdsSanitizedSnapshotter) DatabaseName() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"databaseName",
 		&returns,
 	)
 	return returns
@@ -165,6 +168,16 @@ func (j *jsiiProxy_IRdsSanitizedSnapshotter) Script() *string {
 	_jsii_.Get(
 		j,
 		"script",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_IRdsSanitizedSnapshotter) ShareAccounts() *[]*string {
+	var returns *[]*string
+	_jsii_.Get(
+		j,
+		"shareAccounts",
 		&returns,
 	)
 	return returns
@@ -225,7 +238,7 @@ func (j *jsiiProxy_IRdsSanitizedSnapshotter) Vpc() awsec2.IVpc {
 // The process is handled by a step function.
 //
 // 1. Snapshot the source database
-// 2. Optionally re-ncrypt the snapshot with a different key in case you want to share it with an account that doesn't have access to the original key
+// 2. Optionally re-encrypt the snapshot with a different key in case you want to share it with an account that doesn't have access to the original key
 // 3. Create a temporary database
 // 4. Run a Fargate task to connect to the temporary database and execute an arbitrary SQL script to sanitize it
 // 5. Snapshot the sanitized database
