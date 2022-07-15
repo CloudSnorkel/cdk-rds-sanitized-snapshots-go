@@ -41,7 +41,42 @@ The step function does the following to create the snapshot:
 9. Optionally share the snapshot with other accounts (if you have separate accounts for developers/QA)
 10. Delete temporary database and snapshot
 
-## Example
+## Usage
+
+1. Confirm you're using CDK v2
+2. Install the appropriate package
+
+   1. [Python](https://pypi.org/project/cloudsnorkel.cdk-rds-sanitized-snapshots)
+
+      ```
+      pip install cloudsnorkel.cdk-rds-sanitized-snapshots
+      ```
+   2. [TypeScript or JavaScript](https://www.npmjs.com/package/@cloudsnorkel/cdk-rds-sanitized-snapshots)
+
+      ```
+      npm i @cloudsnorkel/cdk-rds-sanitized-snapshots
+      ```
+   3. [Java](https://search.maven.org/search?q=g:%22com.cloudsnorkel%22%20AND%20a:%22cdk.rds.sanitized-snapshots%22)
+
+      ```xml
+      <dependency>
+      <groupId>com.cloudsnorkel</groupId>
+      <artifactId>cdk.rds.sanitized-snapshots</artifactId>
+      </dependency>
+      ```
+   4. [Go](https://pkg.go.dev/github.com/CloudSnorkel/cdk-rds-sanitized-snapshots-go/cloudsnorkelcdkrdssanitizedsnapshots)
+
+      ```
+      go get github.com/CloudSnorkel/cdk-rds-sanitized-snapshots-go/cloudsnorkelcdkrdssanitizedsnapshots
+      ```
+   5. [.NET](https://www.nuget.org/packages/CloudSnorkel.Cdk.Rds.SanitizedSnapshots/)
+
+      ```
+      dotnet add package CloudSnorkel.Cdk.Rds.SanitizedSnapshots
+      ```
+3. Use `RdsSanitizedSnapshotter` construct in your code (starting with default arguments is fine)
+
+### Code Sample
 
 ```typescript
 let vpc: ec2.Vpc;

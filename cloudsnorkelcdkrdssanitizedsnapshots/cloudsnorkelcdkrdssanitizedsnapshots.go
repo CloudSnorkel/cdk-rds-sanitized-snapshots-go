@@ -17,6 +17,11 @@ import (
 
 // Experimental.
 type IRdsSanitizedSnapshotter interface {
+	// Account of database cluster or instance to snapshot and sanitize.
+	//
+	// Use this when the database is shared across accounts.
+	// Experimental.
+	DatabaseAccount() *string
 	// Database cluster to snapshot and sanitize.
 	//
 	// Only one of `databaseCluster` and `databaseInstance` can be specified.
@@ -73,6 +78,16 @@ type IRdsSanitizedSnapshotter interface {
 // The jsii proxy for IRdsSanitizedSnapshotter
 type jsiiProxy_IRdsSanitizedSnapshotter struct {
 	_ byte // padding
+}
+
+func (j *jsiiProxy_IRdsSanitizedSnapshotter) DatabaseAccount() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"databaseAccount",
+		&returns,
+	)
+	return returns
 }
 
 func (j *jsiiProxy_IRdsSanitizedSnapshotter) DatabaseCluster() awsrds.IDatabaseCluster {

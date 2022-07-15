@@ -11,6 +11,7 @@ func init() {
 		"@cloudsnorkel/cdk-rds-sanitized-snapshots.IRdsSanitizedSnapshotter",
 		reflect.TypeOf((*IRdsSanitizedSnapshotter)(nil)).Elem(),
 		[]_jsii_.Member{
+			_jsii_.MemberProperty{JsiiProperty: "databaseAccount", GoGetter: "DatabaseAccount"},
 			_jsii_.MemberProperty{JsiiProperty: "databaseCluster", GoGetter: "DatabaseCluster"},
 			_jsii_.MemberProperty{JsiiProperty: "databaseInstance", GoGetter: "DatabaseInstance"},
 			_jsii_.MemberProperty{JsiiProperty: "databaseKey", GoGetter: "DatabaseKey"},
