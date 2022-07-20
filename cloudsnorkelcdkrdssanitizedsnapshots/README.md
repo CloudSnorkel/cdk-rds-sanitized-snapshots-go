@@ -78,7 +78,7 @@ The step function does the following to create the snapshot:
 
 ### Code Sample
 
-```typescript
+```go
 let vpc: ec2.Vpc;
 let databaseInstance: rds.DatabaseInstance;
 
