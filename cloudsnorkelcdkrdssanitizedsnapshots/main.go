@@ -1,3 +1,4 @@
+// CDK construct to periodically take snapshots of RDS databases, sanitize them, and share with selected accounts.
 package cloudsnorkelcdkrdssanitizedsnapshots
 
 import (
