@@ -26,6 +26,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "snapshotKey", GoGetter: "SnapshotKey"},
 			_jsii_.MemberProperty{JsiiProperty: "snapshotPrefix", GoGetter: "SnapshotPrefix"},
 			_jsii_.MemberProperty{JsiiProperty: "tempPrefix", GoGetter: "TempPrefix"},
+			_jsii_.MemberProperty{JsiiProperty: "useExistingSnapshot", GoGetter: "UseExistingSnapshot"},
 			_jsii_.MemberProperty{JsiiProperty: "vpc", GoGetter: "Vpc"},
 		},
 		func() interface{} {

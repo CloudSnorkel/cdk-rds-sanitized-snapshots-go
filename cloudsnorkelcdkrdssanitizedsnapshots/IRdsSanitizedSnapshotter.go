@@ -80,6 +80,15 @@ type IRdsSanitizedSnapshotter interface {
 	//
 	// Experimental.
 	TempPrefix() *string
+	// Use the latest available snapshot instead of taking a new one.
+	//
+	// This can be used to shorten the process at the cost of using a possibly older snapshot.
+	//
+	// This will use the latest snapshot whether it's an automatic system snapshot or a manual snapshot.
+	// Default: false.
+	//
+	// Experimental.
+	UseExistingSnapshot() *bool
 	// VPC where temporary database and sanitizing task will be created.
 	// Experimental.
 	Vpc() awsec2.IVpc
@@ -225,6 +234,16 @@ func (j *jsiiProxy_IRdsSanitizedSnapshotter) TempPrefix() *string {
 	_jsii_.Get(
 		j,
 		"tempPrefix",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_IRdsSanitizedSnapshotter) UseExistingSnapshot() *bool {
+	var returns *bool
+	_jsii_.Get(
+		j,
+		"useExistingSnapshot",
 		&returns,
 	)
 	return returns
